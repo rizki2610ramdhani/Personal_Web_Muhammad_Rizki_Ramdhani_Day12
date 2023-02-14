@@ -1,0 +1,35 @@
+body{
+    background-color: #dadada;
+}
+
+.container-md{
+    background-color: white;
+    border-radius: 10px;
+}
+
+.text-justify{
+    text-align: justify;
+}
+
+.int-medsos a{
+    color: rgb(15, 11, 70);
+    font-size: 35px;
+    padding: 10px 17px;
+}
+
+.int-btn-contact{
+    background-color: rgb(15, 11, 70);
+    border-radius: 15px;
+    color: white;
+    text-decoration: none;
+}
+
+.int-btn-download-cv{
+    text-decoration: none;
+    color: #0f0b46;
+}
+
+.int-tech-icon i{
+    font-size:x-large;
+    margin: 2px 6px;
+}

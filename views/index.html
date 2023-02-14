@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Home | {{.Data.Title}} </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <link rel="stylesheet" href="/public/css/style.css">
+    </head>
+    <body>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container">
+                <a class="navbar-brand" href="/"><img src="/public/images/logo.png" alt=""></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        </li>
+                        {{if .Data.IsLogin}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/add-project">Add Project</a>
+                        </li>
+                        {{end}}
+                    </ul>
+                    <div class="navbar-nav ms-auto mb-lg-0">
+                        {{if .Data.IsLogin}}
+                        <a class="nav-link"><strong> Hello {{.Data.Username}}</strong> | </a>
+                        <a href="/login" class="nav-link">Logout</a>
+                        {{else}}
+                        <a href="/register" class="nav-link">Register</a>
+                        <a href="/login" class="nav-link">Login</a>
+                        {{end}}
+                        <a href="/contact-me" class="btn btn-primary">
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!--End Navbar-->
+
+        {{if .FlashData}}
+            <div class="alert alert-success" role="alert">
+            {{.FlashData}}
+            </div>
+        {{end}}
+        <!--Content-->
+            <!--Personal Info-->
+            <div class="container-md my-5">
+                <div class="container px-4">
+                    <div class="row gx-5">
+                        <div class="col">
+                            <div class="p-3">
+                                <h2 class="my-3">Hi, Welcome to my hut</h2>
+                                <p class="text-justify">
+                                    &emsp;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur pariatur vel, dicta eum in dolorem quis aspernatur modi odit distinctio voluptatem reprehenderit nemo quam inventore, aliquam quia facilis dolore illo? Assumenda nihil tempore quas asperiores quasi quisquam optio reiciendis neque sequi exercitationem voluptate deleniti inventore odio beatae cupiditate, aperiam iusto ipsa eos. Exercitationem voluptate, quam voluptates ipsum, temporibus tenetur mollitia unde dolorem minus et quibusdam eligendi quis, praesentium corrupti asperiores rerum aspernatur voluptatum quae. Culpa praesentium doloremque, vero animi aspernatur, dolorum sint quod nam rerum cumque neque corporis velit totam! Harum saepe alias impedit neque asperiores, nisi quisquam distinctio. Facere.
+                                </p>
+                                <a href="/contact-me" class="int-btn-contact px-3 py-1">Contact</a>
+                                <a target="_blank" class="int-btn-download-cv ms-3" href="https://www.linkedin.com/in/muhammad-rizki-ramdhani-331646237/">
+                                    <strong>download CV <i class="fa-solid fa-download"></i></strong>
+                                </a>
+                                <div class="text-center int-medsos mt-3">
+                                    <a target="_blank" href="https://www.linkedin.com/in/muhammad-rizki-ramdhani-331646237/"><i class="fa-brands fa-linkedin"></i></a>
+                                    <a target="_blank" href="https://www.instagram.com/rizki.ramdhnii/"><i class="fa-brands fa-square-instagram"></i></a>
+                                    <a target="_blank" href="https://github.com/rizki2610ramdhani"><i class="fa-brands fa-square-github"></i></a>
+                                    <a target="_blank" href="https://api.whatsapp.com/send/?phone=62895365143607&text&type=phone_number&app_absent=0"><i class="fa-brands fa-square-whatsapp"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="p-3">
+                                <div class="card m-xl-auto m-3">
+                                    <img src="/public/images/people.jpg" class="card-img-top" alt="Rizki Ramdhani">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Muhammad Rizki Ramdhani</h5>
+                                        <hr>
+                                        <p class="card-text">Fullstack Developer</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Personal Info-->
+
+            <!--My Projects-->
+            <div class="container-fluid int-bg-fluid pt-3 pb-5" style="background-color: #f8f8f8;">
+                <h1 class="text-center my-2">MY PROJECT</h1>
+                <div class="container mt-3 px-0 px-md-5">
+                    <div class="row">
+                        {{range $index, $Project := .Projects}}
+                        <div class="col-md-4 my-1 my-md-0">
+                            <div class="card my-2">
+                                <img src="http://localhost:3000/uploads/{{$Project.Image}}" class="card-img-top" alt="image-project">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <a style="text-decoration: none; color: black; cursor: pointer;" href="/detail-project/{{$Project.Id}}">
+                                            {{$Project.ProjectName}}
+                                        </a>
+                                    </h5>
+                                    <span style="font-size:smaller; font-weight: 100;">Durasi : {{$Project.Duration}}</span>
+                                    <hr>
+                                    <p class="card-text mt-1">{{$Project.Description}}</p>
+                                    <div class="int-tech-icon" id="tech">
+                                        {{range $i, $tech := $Project.Technologies}}
+                                            <p class="d-inline mx-2"><i class="{{$tech}}"></i></p>
+                                        {{end}}
+                                    </div>
+                                    <hr>
+                                    <div class="text-end">
+                                        <a href="/edit-project/{{$Project.Id}}" class="btn btn-info">Edit</a>
+                                        <a href="/delete-project/{{$Project.Id}}" class="btn btn-danger">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{end}}
+                    </div>
+                </div>
+            </div>
+            <!--End My Project-->
+            
+        <!--EndContent-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    </body>
+</html>
